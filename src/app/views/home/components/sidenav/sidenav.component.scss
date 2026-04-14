@@ -15,7 +15,7 @@
   }
 
   .filter {
-    padding: 14px 36px 14px 14px;
+    padding: 14px;
     white-space: nowrap;
     display: grid;
     grid-template-rows: repeat(2, auto);
@@ -48,11 +48,6 @@
     .form-group-theme {
       opacity: 1;
       transition: opacity $slow;
-
-      select,
-      input {
-        max-width: 100%;
-      }
     }
   }
 

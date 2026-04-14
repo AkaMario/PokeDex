@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Skip commitizen when the message was already provided via `git commit -m`.
+if [ "$2" = "message" ]; then
+  exit 0
+fi
+
 exec < /dev/tty && node_modules/.bin/cz --hook || true

@@ -7,13 +7,18 @@ select {
   border-radius: 8px;
   cursor: pointer;
   text-transform: capitalize;
-  padding: 0 6px;
+  padding: 0 28px 0 8px;
   height: 24px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   font-family: $roboto;
   transition: $fast;
+  background: $white url('../../../assets/images/arrow-down.png') no-repeat right 8px center;
+  background-size: 10px 6px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
   &:hover {
     border-color: $crimson;
@@ -22,5 +27,9 @@ select {
   &:focus {
     border-color: $shark;
     outline: none;
+  }
+
+  &::-ms-expand {
+    display: none;
   }
 }

@@ -31,7 +31,11 @@
               "src/og-image.jpg",
               "src/assets",
               "src/404.html",
-              "staticwebapp.config.json"
+              {
+                "glob": "staticwebapp.config.json",
+                "input": ".",
+                "output": "/"
+              }
             ],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {

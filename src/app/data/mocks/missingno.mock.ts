@@ -4,7 +4,7 @@ export const missingNo: PokemonSpecieModel = {
   id: 0,
   name: 'MissingNo.',
   genus: 'Pokémon ???',
-  sprite: './assets/images/missingno.png',
+  sprite: 'assets/images/missingno.png',
   height: 10,
   weight: 15983,
   types: [

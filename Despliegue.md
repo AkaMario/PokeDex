@@ -1,221 +1,77 @@
-# Despliegue
+# Configuracion de repositorio
+Despues de clonar el repositorio con git clone
+<img width="630" height="81" alt="image" src="https://github.com/user-attachments/assets/1f04d0ad-1984-4f7b-8317-1f0401483ea1" />
+haces un cd a la carpeta de la pokedex y ahi añadimos el staticwebapp.config.json
 
-## Requisitos
+probe hacer un frist commit pero no me dejaba habia un error del que no consegui evidencia, pero lo solucione de la siguiente manera
 
-- Node.js LTS
-- `npm`
-- repositorio en GitHub
-- Azure Static Web Apps conectado al repositorio
+commitizen/cz en el hook de commit.
 
-## Comandos
+El bloqueo venía de .husky/prepare-commit-msg, que ejecutaba esto:
 
-Instalar dependencias:
-
-```bash
-npm install
 ```
-
-Probar en local:
-
-```bash
-npm start
+exec < /dev/tty && node_modules/.bin/cz --hook || true
 ```
+Ese hook te forzaba el flujo “customizado” de mensaje de commit (Commitizen) y en varios casos (por ejemplo git commit -m ... o desde algunas UIs) no dejaba continuar bien.
 
-Validar antes de desplegar:
+Cómo lo solucionamos:
 
-```bash
-npm run lint
-npm run build
+Se dejó activo Husky + lint-staged para validar código en pre-commit.
+En prepare-commit-msg se agregó esta condición:
 ```
-
-Subir cambios:
-
-```bash
-git add .
-git commit -m "fix: despliegue azure"
-git push origin main
-```
-
-## Configuración importante
-
-### `angular.json`
-
-La salida de producción es:
-
-```json
-"outputPath": "dist/pokedex-angular"
-```
-
-Para copiar `staticwebapp.config.json` correctamente se usa:
-
-```json
-{
-  "glob": "staticwebapp.config.json",
-  "input": ".",
-  "output": "/"
-}
-```
-
-### `staticwebapp.config.json`
-
-Se usa para:
-
-- seguridad
-- `navigationFallback`
-- evitar que Azure reescriba archivos de `/assets`
-
-### `environment.prod.ts`
-
-Para Azure la ruta correcta de imágenes es:
-
-```ts
-imagesPath: '/assets/images'
-```
-
-No debe usarse:
-
-```ts
-imagesPath: '/pokedex-angular/assets/images'
-```
-
-porque eso era para GitHub Pages.
-
-## Proceso de despliegue
-
-1. Revisar cambios:
-
-```bash
-git status
-```
-
-2. Instalar dependencias:
-
-```bash
-npm install
-```
-
-3. Validar proyecto:
-
-```bash
-npm run lint
-npm run build
-```
-
-4. Confirmar que exista `dist/pokedex-angular`
-
-```bash
-ls dist/pokedex-angular
-```
-
-5. Subir cambios al repositorio:
-
-```bash
-git add .
-git commit -m "fix: despliegue azure"
-git push origin main
-```
-
-6. Esperar el despliegue automático en Azure Static Web Apps.
-
-## Errores y soluciones
-
-### 1. No dejaba hacer commit
-
-Error:
-
-```text
-Parsing error: Unexpected character '@'
-```
-
-Causa:
-
-- `eslint` estaba intentando leer archivos `.scss`
-
-Solución:
-
-- separar `prettier` y `eslint` en `.lintstagedrc`
-
-### 2. `commitizen` interrumpía `git commit -m`
-
-Causa:
-
-- el hook `prepare-commit-msg` abría el asistente interactivo siempre
-
-Solución:
-
-```sh
 if [ "$2" = "message" ]; then
   exit 0
 fi
 ```
+Con eso, si usaba git commit -m "...", se salta Commitizen y ya no se bloquea el commit.
+el problema era el hook “customize” del mensaje, y la solucion que encontre fue permitir un ¨bypass¨ cuando ya mandas el mensaje manualmente.
 
-### 3. No se podían sincronizar cambios
 
-Error:
+asi me evite validaciones innecesarias para la cosa tan sencilla que iba a hacer, volviendo al staticwebapp.config.json, lo cree en la carpeta raiz del repo con los encabezados que proporciono el profe ronald
 
-```text
-ahead 2, behind 1
+## Encabezados y propósitos
+Content-Security-Policy Controla qué recursos puede cargar la app (previene XSS).
+Strict-Transport-Security Obliga el uso de HTTPS.
+X-Content-Type-Options: nosniff Evita la detección automática de tipos de archivo.
+X-Frame-Options: DENY Evita que la app se muestre en iframes externos.
+Referrer-Policy: no-referrer Minimiza la fuga de información en cabeceras HTTP.
+
+despues de añadir los headers al json. y validar como se veia el deploy en Azure me di cuenta que no se mostraban las imagenes de los pokemones 
+
+Lo solucionamos corrigiendo rutas de assets que estaban mal en producción.
+
+en environment.prod.ts estaba como
+```
+imagesPath: '/pokedex-angular/assets/images'
+```
+y debia estar como 
+```
+imagesPath: '/assets/images'
 ```
 
-Solución:
+porque yo saque en un .zip la carpeta pokedex-angular la subi a un repo y hice el git init desde ahi.
 
-```bash
-git fetch origin
-git rebase origin/main
-git push origin main
-```
+entonces con la ruta anterior, en Azure/static hosting buscaba imágenes en una carpeta que no existía y daba 404, por eso no se veían los pokémon.
 
-### 4. Error de autenticación al hacer push
 
-Error:
+# Despliegue en Azure
 
-```text
-error: unable to read askpass response from '/usr/bin/ksshaskpass'
-```
+Para desplegar en Azure se necesita una cuenta, hay que entrar a Azure y selecionar el servicio que se quiere
 
-Solución:
+<img width="1366" height="631" alt="image" src="https://github.com/user-attachments/assets/8d87d4ee-db8a-474c-b13b-028f19699430" />
 
-```bash
-gh auth login
-```
+llenas los campos del fomulario y depiglegas con tu cuenta de git, la conectas con azure, selecionas el repositorio la rama
 
-o configurar SSH:
+<img width="1366" height="631" alt="image" src="https://github.com/user-attachments/assets/7e505dec-c99c-45d4-9b06-9c12e86ec312" />
 
-```bash
-git remote set-url origin git@github.com:AkaMario/PokeDex.git
-```
+le das a revisar y crear y ahi te proporcionara el link.
 
-### 5. Las imágenes no cargaban en Azure
+# Prueba de seguridad y auditoria extra
 
-Causa:
+<img width="1262" height="478" alt="image" src="https://github.com/user-attachments/assets/563b2ab9-89c2-4347-a4a1-530f6cd5ec80" />
 
-- rutas de imágenes configuradas para GitHub Pages
-- uso de `./assets/...` en algunos templates
+<img width="984" height="552" alt="image" src="https://github.com/user-attachments/assets/58966d35-724b-4e66-9491-4a3ab86bc7a8" />
 
-Solución:
 
-- cambiar a `/assets/images` en producción
-- usar `assets/images/...` en los templates
 
-### 6. Error con `staticwebapp.config.json`
-
-Error:
-
-```text
-The staticwebapp.config.json asset path must start with the project source root.
-```
-
-Solución:
-
-- declararlo en `angular.json` con `glob`, `input` y `output`
-
-## Verificación final
-
-Después del despliegue comprobar:
-
-- la app abre correctamente
-- las imágenes cargan
-- las rutas `/`, `/about` y `/pokemon/1` funcionan
-- no hay errores 404 en `/assets/...`
-- no hay errores en la consola del navegador
 

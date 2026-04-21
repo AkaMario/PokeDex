@@ -1,89 +1,74 @@
 # Cómo crear una cuenta en Azure for Students
 
-## Paso 1: Entra a la página oficial
+## Paso 1: Ir a la página oficial
 
-Abre este enlace:
+Entra al sitio oficial:
 
 https://azure.microsoft.com/free/students/
 
-En esa página verás el botón **Start free**. Microsoft indica que el registro se hace con correo estudiantil y que puedes renovar cada año mientras sigas siendo estudiante. :contentReference[oaicite:0]{index=0}
+<img src="https://learn.microsoft.com/en-us/azure/cost-management-billing/media/free-services/students.png" alt="Página principal de Azure for Students">
 
 ---
 
-## Paso 2: Haz clic en "Start free"
+## Paso 2: Hacer clic en "Start free"
 
-Presiona el botón **Start free** para comenzar el registro. :contentReference[oaicite:1]{index=1}
+Busca el botón **Start free** o **Comenzar gratis** y haz clic.
 
----
-
-## Paso 3: Inicia sesión con tu cuenta Microsoft
-
-Azure te pedirá entrar con una cuenta Microsoft.
-
-- Si ya tienes una cuenta Microsoft, inicia sesión.
-- Si no tienes una, crea una nueva y luego continúa el proceso.
+<img src="https://learn.microsoft.com/en-us/azure/cost-management-billing/media/free-services/free-account-sign-up.png" alt="Botón Start free de Azure">
 
 ---
 
-## Paso 4: Usa tu correo estudiantil
+## Paso 3: Iniciar sesión con Microsoft
 
-Cuando el sistema lo solicite, escribe tu correo institucional o estudiantil.
+- Si ya tienes cuenta Microsoft, inicia sesión  
+- Si no tienes, crea una nueva cuenta  
 
-Microsoft indica que Azure for Students usa el correo de tu escuela para registrarte y validar que eres estudiante. :contentReference[oaicite:2]{index=2}
-
----
-
-## Paso 5: Completa la verificación de estudiante
-
-Después de escribir tu correo, Azure validará si cumples los requisitos del programa.
-
-Si tu institución es aceptada, podrás seguir con la activación. :contentReference[oaicite:3]{index=3}
+<img src="https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/media/sign-in-users/sign-in-page.png" alt="Inicio de sesión de Microsoft">
 
 ---
 
-## Paso 6: Completa la verificación de seguridad
+## Paso 4: Ingresar correo estudiantil
 
-Microsoft puede pedirte una validación adicional, por ejemplo:
+Escribe tu correo institucional.
 
-- Confirmar tu identidad
-- Verificar tu cuenta
-- Confirmar algunos datos de seguridad
+<img src="https://learn.microsoft.com/en-us/azure/cost-management-billing/media/free-services/email-verification.png" alt="Ingreso de correo institucional">
 
 ---
 
-## Paso 7: Acepta los términos y finaliza
+## Paso 5: Verificación de estudiante
 
-Lee los términos del servicio y completa el registro.
+Azure validará que eres estudiante.
 
-Si todo sale bien, tu cuenta de Azure for Students quedará activa. :contentReference[oaicite:4]{index=4}
+<img src="https://learn.microsoft.com/en-us/azure/cost-management-billing/media/free-services/student-verify.png" alt="Verificación de estudiante">
 
 ---
 
-## Paso 8: Entra al portal de Azure
+## Paso 6: Verificación de seguridad
 
-Cuando la cuenta ya esté creada, entra aquí:
+Puede solicitar número de teléfono o código SMS.
+
+<img src="https://learn.microsoft.com/en-us/azure/active-directory/authentication/media/howto-mfa-getstarted/mfa-phone.png" alt="Verificación por SMS">
+
+---
+
+## Paso 7: Aceptar términos
+
+Acepta los términos y finaliza el registro.
+
+<img src="https://learn.microsoft.com/en-us/azure/cost-management-billing/media/free-services/accept-terms.png" alt="Aceptación de términos">
+
+---
+
+## Paso 8: Acceder al portal de Azure
+
+Entra al portal:
 
 https://portal.azure.com
 
-Desde ese portal podrás administrar tus recursos y servicios de Azure. :contentReference[oaicite:5]{index=5}
-
----
-
-## Qué incluye Azure for Students
-
-Según Microsoft, Azure for Students ofrece:
-
-- 100 USD en créditos
-- Sin tarjeta de crédito al registrarte
-- Servicios gratuitos seleccionados
-- Renovación anual mientras sigas siendo estudiante
-
-Los servicios incluidos pueden cambiar con el tiempo. :contentReference[oaicite:6]{index=6}
+<img src="https://learn.microsoft.com/en-us/azure/azure-portal/media/azure-portal-overview/azure-portal.png" alt="Portal de Azure">
 
 ---
 
 ## Video tutorial
 
-Puedes agregar al final este enlace de YouTube como referencia:
-
-[Video tutorial en YouTube sobre Azure for Students](https://www.youtube.com/results?search_query=how+to+create+azure+for+students+account)
+https://www.youtube.com/watch?v=fvTVxDa3B10

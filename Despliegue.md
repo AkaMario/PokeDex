@@ -12,9 +12,9 @@ El bloqueo venía de .husky/prepare-commit-msg, que ejecutaba esto:
 ```
 exec < /dev/tty && node_modules/.bin/cz --hook || true
 ```
-Ese hook te forzaba el flujo “customizado” de mensaje de commit (Commitizen) y en varios casos (por ejemplo git commit -m ... o desde algunas UIs) no dejaba continuar bien.
+Ese hook te forzaba el flujo “customizado” de mensaje de commit (Commitizen) y al ahcer git commit -m no dejaba continuar bien.
 
-Cómo lo solucionamos:
+Cómo lo solucione:
 
 Se dejó activo Husky + lint-staged para validar código en pre-commit.
 En prepare-commit-msg se agregó esta condición:

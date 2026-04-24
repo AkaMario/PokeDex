@@ -30,11 +30,11 @@ el problema era el hook “customize” del mensaje, y la solucion que encontre 
 asi me evite validaciones innecesarias para la cosa tan sencilla que iba a hacer, volviendo al staticwebapp.config.json, lo cree en la carpeta raiz del repo con los encabezados que proporciono el profe ronald
 
 ## Encabezados y propósitos
-Content-Security-Policy Controla qué recursos puede cargar la app (previene XSS).
-Strict-Transport-Security Obliga el uso de HTTPS.
-X-Content-Type-Options: nosniff Evita la detección automática de tipos de archivo.
-X-Frame-Options: DENY Evita que la app se muestre en iframes externos.
-Referrer-Policy: no-referrer Minimiza la fuga de información en cabeceras HTTP.
+- Content-Security-Policy Controla qué recursos puede cargar la app (previene XSS).
+- Strict-Transport-Security Obliga el uso de HTTPS.
+- X-Content-Type-Options: nosniff Evita la detección automática de tipos de archivo.
+- X-Frame-Options: DENY Evita que la app se muestre en iframes externos.
+- Referrer-Policy: no-referrer Minimiza la fuga de información en cabeceras HTTP.
 
 despues de añadir los headers al json. y validar como se veia el deploy en Azure me di cuenta que no se mostraban las imagenes de los pokemones 
 

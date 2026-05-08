@@ -66,7 +66,7 @@ llenas los campos del fomulario y depiglegas con tu cuenta de git, la conectas c
 
 le das a revisar y crear y ahi te proporcionara el link.
 
-<a href="ashy-bay-073bbce0f.7.azurestaticapps.net">Link</a>
+Link:ashy-bay-073bbce0f.7.azurestaticapps.net
 
 # Prueba de seguridad y auditoria extra
 
